@@ -1,20 +1,26 @@
 package service
 
 import (
+	"context"
 
+	"financas/domain"
 )
 
-type TransactionService struct {}
-
-func NewTransactionService () *TransactionService {
-	return &TransactionService{}
+type TransactionRepository interface {
+	Create(ctx context.Context, transaction domain.Transaction) error
 }
 
-type CreateTransactionService struct {
+type TransactionService struct {
+	repository TransactionRepository
+}
 
-	Description string `json:"description"`
-	Amount float64 `json:"Amount"`
-	Type string `json:"type"`
-	Date string `json:"date"`
+func NewTransactionService(repository TransactionRepository) *TransactionService {
+	return &TransactionService{repository: repository}
+}
 
+type CreateTransactionInput struct {
+	Description string  `json:"description"`
+	Amount      float64 `json:"amount"`
+	Type        string  `json:"type"`
+	Date        string  `json:"date"`
 }

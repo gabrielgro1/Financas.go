@@ -1,9 +1,18 @@
 package domain
 
+import "time"
+
+type TransactionType string
+
+const (
+	TransactionTypeIncome  TransactionType = "income"
+	TransactionTypeExpense TransactionType = "expense"
+)
+
 type Transaction struct {
-	Id int
+	ID          int
 	Description string
-	Amount float64
-	Type string
-	Date string
+	AmountCents int
+	Type        TransactionType
+	Date        time.Time
 }
