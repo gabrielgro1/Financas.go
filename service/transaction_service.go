@@ -24,3 +24,7 @@ type CreateTransactionInput struct {
 	Type        string  `json:"type"`
 	Date        string  `json:"date"`
 }
+
+func (s* TransactionService) ValidadeCreate(input CreateTransactionInput) error {
+	return nil
+}
