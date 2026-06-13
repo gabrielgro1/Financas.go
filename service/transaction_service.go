@@ -2,9 +2,11 @@ package service
 
 import (
 	"context"
-
+	"errors"
 	"financas/domain"
 )
+
+var ErrDescriptionRequired = errors.New("description is required")
 
 type TransactionRepository interface {
 	Create(ctx context.Context, transaction domain.Transaction) error
