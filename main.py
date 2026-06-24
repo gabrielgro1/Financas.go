@@ -82,6 +82,40 @@ def deletar_transacao(transacao_id):
     
     return jsonify({"erro": "transacao nao encontrada"}), 404
 
+@app.put("/transacoes/<int:transacao_id>")
+def editar_transacoes(transacao_id):
+    dados = request.get_json(silent=True)
+
+    if dados is None:
+        return jsonify({"erro": "envie um JSON valido"}), 400
+    tipo = dados.get("tipo")
+    valor = dados.get("valor")
+    descricao = dados.get("descricao")
+
+    if tipo not in ["receita","despesa"]:
+        return jsonify({"erro": "tipo deve ser receita ou despesa"}), 400
+    
+    if valor is None:
+        return jsonify({"erro": "valor obrigatorio"}), 400
+    
+    if valor <= 0:
+        return jsonify({"erro": "valor deve ser maior que zero"}), 400
+    
+    if not descricao:
+        return jsonify({"erro": "descricao obrigatoria"}), 400
+    
+    for transacao in transacoes:
+        if transacao["id"] == transacao_id:
+            transacao["tipo"] = tipo
+            transacao["valor"] = valor
+            transacao["descricao"] = descricao
+
+            return jsonify({
+                "mensagem": "transacao atualizada",
+                "transacao": transacao
+            }), 200
+    return jsonify({"erro": "transacao nao encontrada"}), 404
+
 
 
 if __name__ == "__main__":
