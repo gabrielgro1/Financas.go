@@ -1,0 +1,25 @@
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    senha_hash TEXT NOT NULL,
+    criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE categorias (
+    id SERIAL PRIMARY KEY,
+    nome TEXT NOT NULL,
+    usuario_id INTEGER NOT NULL REFERENCES usuarios(id),
+    criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE transacoes (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER NOT NULL REFERENCES usuarios(id),
+    categoria_id INTEGER REFERENCES categorias(id),
+    tipo TEXT NOT NULL,
+    valor NUMERIC(10, 2) NOT NULL,
+    descricao TEXT NOT NULL,
+    data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
