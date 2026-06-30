@@ -45,13 +45,15 @@ def editar_transacao_no_banco(transacao_id, usuario_id, transacao_validada):
     cursor.execute(
         """
         UPDATE transacoes
-        SET tipo = %s,
+        SET categoria_id = %s,
+            tipo = %s,
             valor = %s,
             descricao = %s
         WHERE id = %s AND usuario_id = %s
         RETURNING id, usuario_id, categoria_id, tipo, valor, descricao, data, criado_em;
         """,
         (
+            transacao_validada["categoria_id"],
             transacao_validada["tipo"],
             transacao_validada["valor"],
             transacao_validada["descricao"],
