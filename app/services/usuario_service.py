@@ -11,12 +11,12 @@ def criar_usuario(dados):
 
     if erro:
         return erro, None
-    
+
     usuario_existente = buscar_usuario_por_email(usuario_validado["email"])
-    
+
     if usuario_existente is not None:
         return {"erro": "email ja cadastrado"}, None
-    
+
     senha_hash = generate_password_hash(usuario_validado["senha"])
 
     usuario = criar_usuario_no_banco(

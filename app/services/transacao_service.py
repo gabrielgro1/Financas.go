@@ -17,7 +17,7 @@ def criar_transacao(dados, usuario_id):
 
     if not categoria_existe_no_banco(transacao_validada["categoria_id"], usuario_id):
         return {"erro": "categoria nao encontrada"}, None
-    
+
     transacao = criar_transacao_no_banco(
         transacao_validada=transacao_validada,
         usuario_id=usuario_id,
@@ -31,7 +31,7 @@ def editar_transacao(transacao_id, dados, usuario_id):
 
     if erro:
         return erro, None
-    
+
     if not categoria_existe_no_banco(transacao_validada["categoria_id"], usuario_id):
         return {"erro": "categoria nao encontrada"}, None
 

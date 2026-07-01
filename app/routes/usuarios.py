@@ -9,12 +9,12 @@ def criar_usuario():
     dados = request.get_json(silent=True)
     if dados is None:
         return jsonify({"erro": "envie um JSON valido"}), 400
-    
+
     erro, usuario = criar_usuario_service(dados)
 
     if erro:
         return jsonify(erro), 400
-    
+
     return jsonify({
         "mensagem": "usuario criado",
         "usuario": usuario

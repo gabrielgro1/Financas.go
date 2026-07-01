@@ -8,7 +8,7 @@ def registrar_error_handlers(app):
         return jsonify({
             "erro": "erro ao conectar com o banco de dados"
         }), 503
-    
+
     @app.errorhandler(psycopg2.Error)
     def tratar_erro_banco(erro):
         return jsonify({

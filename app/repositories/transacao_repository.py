@@ -4,7 +4,7 @@ from app.database import conectar_banco
 def buscar_transacao_no_banco(transacao_id, usuario_id):
     conexao = conectar_banco()
     cursor = conexao.cursor()
-    
+
     cursor.execute(
         """
         SELECT id, usuario_id, categoria_id, tipo, valor, descricao, data, criado_em
@@ -144,10 +144,10 @@ def deletar_transacao_no_banco(transacao_id, usuario_id):
         """,
         (transacao_id, usuario_id)
     )
-    
+
     transacao = cursor.fetchone()
     conexao.commit()
-    
+
     cursor.close()
     conexao.close()
 
@@ -168,10 +168,10 @@ def obter_resumo_do_banco(usuario_id):
         """,
         (usuario_id,)
     )
-    
+
     total_receitas, total_despesas = cursor.fetchone()
     saldo = total_receitas - total_despesas
-    
+
     cursor.close()
     conexao.close()
 
@@ -180,4 +180,3 @@ def obter_resumo_do_banco(usuario_id):
         "total_despesas": float(total_despesas),
         "saldo": float(saldo),
     }
-    

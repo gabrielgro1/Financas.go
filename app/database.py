@@ -10,5 +10,5 @@ def conectar_banco():
 
     if database_url is None:
         raise RuntimeError("DATABASE_URL nao configurada")
-    
+
     return psycopg2.connect(database_url)
