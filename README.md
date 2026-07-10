@@ -14,7 +14,7 @@ A ideia deste projeto foi construir uma API real aos poucos, entendendo cada dec
 - Validacoes de entrada antes de gravar no banco.
 - Tratamento de erros de banco e conexao.
 
-## Aprendizados aplicados
+## Aprendizados aplicadosll
 
 - Criacao e uso de `venv`.
 - Instalacao de dependencias com `pip`.
