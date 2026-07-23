@@ -4,7 +4,7 @@ API REST para controle financeiro pessoal, criada como um projeto de aprendizado
 
 A ideia deste projeto foi construir uma API real aos poucos, entendendo cada decisao: ambiente virtual, instalacao de pacotes, rotas HTTP, JSON, validacao, PostgreSQL, organizacao em camadas, autenticacao com token e tratamento de erros.
 
-## O que a API faz  ok
+## O que a API faz  
 
 - Cadastro de usuarios com senha protegida por hash.
 - Login com retorno de token JWT.
